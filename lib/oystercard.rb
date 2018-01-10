@@ -3,9 +3,9 @@
 require_relative 'station.rb'
 
 class Oystercard
-  attr_reader :balance, :entry_station, :journey_history, :exit_station
+  attr_reader :balance, :entry_station, :exit_station, :journey_history
 
-  MAX_AMOUNT = 90
+  CARD_LIMIT = 90
   MINIMUM_FARE = 1
 
   def initialize
@@ -14,7 +14,7 @@ class Oystercard
   end
 
   def top_up(amount)
-    raise "There is a limit of #{MAX_AMOUNT}" if amount > MAX_AMOUNT
+    raise "There is a limit of #{CARD_LIMIT}" if amount > CARD_LIMIT
     @balance += amount
   end
 
