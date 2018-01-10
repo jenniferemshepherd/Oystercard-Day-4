@@ -1,4 +1,3 @@
-# Oystercard
 
 require_relative 'station.rb'
 
@@ -23,8 +22,8 @@ class Oystercard
   end
 
   def touch_in(station)
-    raise "you have already touched in" if in_journey?
-    raise "you dont have enough money" if @balance < MINIMUM_FARE
+    raise "already touched in" if in_journey?
+    raise "not enough money" if @balance < MINIMUM_FARE
     @entry_station = station
   end
 
