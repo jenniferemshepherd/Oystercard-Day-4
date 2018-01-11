@@ -6,7 +6,8 @@ describe Oystercard do
   subject(:card) { described_class.new }
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
-  let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+  let(:journey) { double :journey }
+  let(:journey) { {entry_station: entry_station, exit_station: exit_station} }
 
   describe 'Balance' do
     it "has a balance of 0" do
@@ -46,10 +47,6 @@ describe Oystercard do
 
       it { is_expected.to respond_to(:touch_in).with(1).argument }
 
-      it 'touching in changes status to true' do
-        expect(card.in_journey?).to eq true
-      end
-
       it 'touching in twice will raise an error' do
         expect {card.touch_in(entry_station)}.to raise_error "you have already touched in"
       end
@@ -80,9 +77,9 @@ describe Oystercard do
         expect { card.touch_out(exit_station) }.to change { card.balance }.by (-Oystercard::MINIMUM_FARE)
       end
 
-      it 'card can be used to touch out' do
-          expect(card).not_to be_in_journey
-      end
+      # it 'card can be used to touch out' do
+      #     expect(card).not_to be_in_journey
+      # end
 
       it 'sets entry station to nil when touching out' do
         expect(card.entry_station).to eq nil
@@ -98,7 +95,7 @@ describe Oystercard do
     end
 
     it 'Card is not in a journey by default' do
-      expect(card.in_journey?).to eq false
+      expect(card.journey_history).to be_empty
     end
   end
 end
