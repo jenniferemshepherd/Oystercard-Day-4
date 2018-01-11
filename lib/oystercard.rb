@@ -26,6 +26,7 @@ class Oystercard
 
   def touch_in(station)
     raise "you dont have enough money" if @balance < MINIMUM_FARE
+    # add_journey_to_history if @current_journey.entry != nil 
     @current_journey = @journey.new
     @current_journey.set_entry(station)
   end
