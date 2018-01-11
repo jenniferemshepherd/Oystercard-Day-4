@@ -8,10 +8,10 @@ class Oystercard
   CARD_LIMIT = 90
   MINIMUM_FARE = 1
 
-  def initialize
+  def initialize(journey_class = Journey)
     @balance = 0
     @journey_history = []
-    @journey
+    @journey = journey_class
   end
 
   # def active?
@@ -41,7 +41,7 @@ class Oystercard
   end
 
   def add_journey_to_history
-    @journey_history << {entry_station: @entry_station, exit_station: @exit_station}
+    @journey_history << @journey.combine
   end
 
   private

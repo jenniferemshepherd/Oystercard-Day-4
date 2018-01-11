@@ -17,4 +17,12 @@ class Journey
     @entry = station
   end
 
+  def set_exit(station)
+    @exit = station
+  end
+
+  def combine
+    {entry_station: @entry, exit_station: @exit}
+  end
+
 end
