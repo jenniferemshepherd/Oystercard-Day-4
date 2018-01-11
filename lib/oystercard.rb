@@ -3,7 +3,7 @@ require_relative 'station.rb'
 require_relative 'journey.rb'
 
 class Oystercard
-  attr_reader :balance, :journey_history
+  attr_reader :balance, :journey_history, :current_journey
 
   CARD_LIMIT = 90
   MINIMUM_FARE = 1
@@ -26,7 +26,7 @@ class Oystercard
 
   def touch_in(station)
     raise "you dont have enough money" if @balance < MINIMUM_FARE
-    # add_journey_to_history if @current_journey.entry != nil 
+    add_journey_to_history if @current_journey != nil
     @current_journey = @journey.new
     @current_journey.set_entry(station)
   end
@@ -40,6 +40,7 @@ class Oystercard
 
   def add_journey_to_history
     @journey_history << @current_journey.combine
+    @current_journey = nil
   end
 
   private
