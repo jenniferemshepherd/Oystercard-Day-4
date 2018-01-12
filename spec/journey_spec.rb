@@ -31,11 +31,6 @@ describe Journey do
       journey.set_exit("Brixton")
     end
 
-    describe "#combine" do
-      it "combines entry and exit" do
-        expect(journey.combine).to eql({:entry_station => "Barking", :exit_station => "Brixton"})
-      end
-    end
   end
 
   describe '#fare' do
