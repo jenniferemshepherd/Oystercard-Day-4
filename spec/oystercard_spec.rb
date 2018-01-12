@@ -15,12 +15,6 @@ describe Oystercard do
     end
   end
 
-  describe 'journey history' do
-    it "has an empty journey history at start" do
-      expect(card.journey_history).to be_empty
-    end
-  end
-
   describe '#top_up' do
     it "tops up the oystercard" do
       expect(card.top_up(10)).to eq 10
@@ -42,7 +36,7 @@ describe Oystercard do
       it 'has started journey' do
         card.top_up(30)
         card.touch_in(entry_station)
-        expect(card.current_journey).not_to be nil
+        expect(card.journey_log.current_journey).not_to be nil
       end
     end
 
@@ -61,7 +55,11 @@ describe Oystercard do
         card.touch_in(entry_station)
         expect { card.touch_out(exit_station) }.to change { card.balance }.by (-Oystercard::MINIMUM_FARE)
       end
-    end
 
+      it 'alters balance on double touch out' do
+        card.top_up(30)
+        expect { card.touch_out(exit_station) }.to change { card.balance }.by -6
+      end
+    end
   end
 end

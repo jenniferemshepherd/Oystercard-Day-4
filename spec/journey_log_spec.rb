@@ -31,7 +31,6 @@ describe JourneyLog do
       expect(log.history).not_to be_empty
     end
 
-
     # it 'receives set_exit' do
     #   log.start_journey(station)
     #   log.end_journey(station)
