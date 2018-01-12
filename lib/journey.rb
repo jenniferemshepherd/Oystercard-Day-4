@@ -16,10 +16,6 @@ class Journey
     @exit = station
   end
 
-  # def combine
-  #   {entry_station: @entry, exit_station: @exit}
-  # end
-
   def fare
     return 6 if @entry == nil || @exit == nil
     Oystercard::MINIMUM_FARE
