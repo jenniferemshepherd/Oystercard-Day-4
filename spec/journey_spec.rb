@@ -36,11 +36,29 @@ describe Journey do
         expect(journey.combine).to eql({:entry_station => "Barking", :exit_station => "Brixton"})
       end
     end
+  end
 
-    describe '#fare' do
-      it 'returns the minimum fare' do
-        expect(journey.fare).to eq Oystercard::MINIMUM_FARE
-      end
+  describe '#fare' do
+    before do
+      journey.set_entry("Barking")
+      journey.set_exit("Brixton")
     end
+
+    it 'returns the minimum fare' do
+      expect(journey.fare).to eq Oystercard::MINIMUM_FARE
+    end
+  end
+
+  describe 'penalty fare' do
+    it 'returns penalty fare if no touch in' do
+      journey.set_exit("Brixton")
+      expect(journey.fare).to eq 6
+    end
+
+    it 'returns penalty fare if no touch out' do
+      journey.set_entry("Barking")
+      expect(journey.fare).to eq 6
+    end
+
   end
 end

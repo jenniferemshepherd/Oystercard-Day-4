@@ -25,6 +25,8 @@ class Journey
   end
 
   def fare
+    return 6 if @entry == nil
+    return 6 if @exit == nil
     Oystercard::MINIMUM_FARE
   end
 
