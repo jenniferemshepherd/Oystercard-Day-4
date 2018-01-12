@@ -59,6 +59,5 @@ describe Journey do
       journey.set_entry("Barking")
       expect(journey.fare).to eq 6
     end
-
   end
 end
