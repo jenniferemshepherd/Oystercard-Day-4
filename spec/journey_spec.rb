@@ -25,15 +25,22 @@ describe Journey do
     end
   end
 
-
-  describe "#combine" do
-    it "combines entry and exit" do
+  context 'full journey' do
+    before do
       journey.set_entry("Barking")
       journey.set_exit("Brixton")
-      expect(journey.combine).to eql({:entry_station => "Barking", :exit_station => "Brixton"})
+    end
+
+    describe "#combine" do
+      it "combines entry and exit" do
+        expect(journey.combine).to eql({:entry_station => "Barking", :exit_station => "Brixton"})
+      end
+    end
+
+    describe '#fare' do
+      it 'returns the minimum fare' do
+        expect(journey.fare).to eq Oystercard::MINIMUM_FARE
+      end
     end
   end
-
-  # describe ""
-
 end

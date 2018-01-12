@@ -3,11 +3,10 @@ require_relative 'oystercard.rb'
 class Journey
 
   attr_reader :entry, :exit
-
-  def initialize
-    @entry = nil
-    @exit = nil
-  end
+  #
+  # def initialize
+  #
+  # end
 
   def active?
     @entry != nil
@@ -23,6 +22,10 @@ class Journey
 
   def combine
     {entry_station: @entry, exit_station: @exit}
+  end
+
+  def fare
+    Oystercard::MINIMUM_FARE
   end
 
 end
