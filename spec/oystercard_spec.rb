@@ -33,9 +33,16 @@ describe Oystercard do
 
   describe '#touch_in' do
     context 'sufficient balance' do
-      before do
+      it 'alters balance on double touch in' do
         card.top_up(30)
         card.touch_in(entry_station)
+        expect {card.touch_in(entry_station)}.to change {card.balance}
+      end
+
+      it 'has started journey' do
+        card.top_up(30)
+        card.touch_in(entry_station)
+        expect(card.current_journey).not_to be nil
       end
     end
 
@@ -44,6 +51,7 @@ describe Oystercard do
         expect {card.touch_in(entry_station)}.to raise_error "you dont have enough money"
       end
     end
+
   end
 
   describe '#touch_out' do
