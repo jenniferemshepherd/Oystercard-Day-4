@@ -4,12 +4,12 @@ class Journey
 
   attr_reader :entry, :exit
 
-  def active?
-    @entry != nil
+  def initialize(station = nil)
+    @entry = station
   end
 
-  def set_entry(station)
-    @entry = station
+  def active?
+    @entry != nil
   end
 
   def set_exit(station)
@@ -17,8 +17,12 @@ class Journey
   end
 
   def fare
-    return 6 if @entry == nil || @exit == nil
+    return 6 if incomplete?
     Oystercard::MINIMUM_FARE
+  end
+
+  def incomplete?
+    @entry == nil || @exit == nil
   end
 
 end

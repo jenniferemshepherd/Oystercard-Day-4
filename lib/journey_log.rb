@@ -7,11 +7,10 @@ class JourneyLog
   def initialize
     @journey_class = Journey
     @history = []
-    @current_journey
   end
 
   def start(station)
-    create_journey
+    create_journey(station)
     @current_journey.set_entry(station)
   end
 
@@ -22,13 +21,31 @@ class JourneyLog
 
   private
 
-    def create_journey
-      @current_journey = @journey_class.new
+    def create_journey(station)
+      @current_journey = @journey_class.new(station)
     end
 
     def log(current_journey)
       @history << current_journey
+      clear_journey
+    end
+
+    def clear_journey
       @current_journey = nil
     end
+
+    # def current_journey
+    #   @current_journey if @current_journey != nil
+    #   @current_journey = @journey_class.new
+    # end
+
+
+    # def check_touch_in
+    #   if @current_journey != nil
+    #     finish(station)
+    #     # deduct(@journey_log.history.last.fare)
+    #   end
+
+
 
 end

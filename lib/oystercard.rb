@@ -10,10 +10,7 @@ class Oystercard
   MINIMUM_FARE = 1
 
   def initialize
-    # (journey = Journey.new)
     @balance = 0
-    # @journey_history = []
-    # @journey = journey
     @journey_log = JourneyLog.new
   end
 
@@ -39,31 +36,16 @@ class Oystercard
 
   private
 
-  # def add_journey_to_history
-  #   @journey_history << @current_journey
-  #   @current_journey = nil
-  # end
+    def insufficient_balance?
+      @balance < MINIMUM_FARE
+    end
 
-  def insufficient_balance?
-    @balance < MINIMUM_FARE
-  end
+    def limit_exceeded?(amount)
+      @balance + amount > CARD_LIMIT
+    end
 
-  def limit_exceeded?(amount)
-    amount > CARD_LIMIT
-  end
-
-  # def start_journey(station)
-  #   @current_journey = @journey
-  #   @current_journey.set_entry(station)
-  # end
-
-  def deduct(amount)
-    @balance -= amount
-  end
-
-  # def complete_journey
-  #   deduct(@journey.fare)
-  #   add_journey_to_history
-  # end
+    def deduct(amount)
+      @balance -= amount
+    end
 
 end

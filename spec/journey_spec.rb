@@ -2,19 +2,17 @@ require 'journey'
 
 describe Journey do
 
-  subject(:journey) {described_class.new}
+  subject(:journey) {described_class.new("Arsenal")}
 
   context '#active?' do
     it 'knows it is in a journey' do
-      journey.set_entry("Barking")
       expect(journey).to be_active
     end
   end
 
   context "#set_entry" do
     it "starts journey on touch in" do
-      journey.set_entry("Barking")
-      expect(journey.entry).to eq "Barking"
+      expect(journey.entry).to eq "Arsenal"
     end
   end
 
@@ -27,7 +25,6 @@ describe Journey do
 
   context 'full journey' do
     before do
-      journey.set_entry("Barking")
       journey.set_exit("Brixton")
     end
 
@@ -35,7 +32,6 @@ describe Journey do
 
   describe '#fare' do
     before do
-      journey.set_entry("Barking")
       journey.set_exit("Brixton")
     end
 
@@ -46,12 +42,12 @@ describe Journey do
 
   describe 'penalty fare' do
     it 'returns penalty fare if no touch in' do
-      journey.set_exit("Brixton")
-      expect(journey.fare).to eq 6
+      no_touch_in = Journey.new
+      no_touch_in.set_exit("Brixton")
+      expect(no_touch_in.fare).to eq 6
     end
 
     it 'returns penalty fare if no touch out' do
-      journey.set_entry("Barking")
       expect(journey.fare).to eq 6
     end
   end
