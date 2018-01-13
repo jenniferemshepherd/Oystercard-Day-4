@@ -30,6 +30,8 @@ describe Oystercard do
       it 'alters balance on double touch in' do
         card.top_up(30)
         card.touch_in(entry_station)
+        card.touch_out(exit_station)
+        card.touch_in(entry_station)
         expect {card.touch_in(entry_station)}.to change {card.balance}
       end
 

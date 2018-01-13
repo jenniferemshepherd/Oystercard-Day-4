@@ -20,8 +20,8 @@ class JourneyLog
 
   private
 
-    def create_journey(station)
-      @current_journey = @journey_class.new(station)
+    def create_journey(entry)
+      @current_journey = @journey_class.new(entry)
     end
 
     def log(current_journey)
