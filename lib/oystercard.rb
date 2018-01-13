@@ -25,7 +25,7 @@ class Oystercard
   def touch_in(station)
     raise "you dont have enough money" if insufficient_balance?
     if @journey_log.current_journey != nil
-      @journey_log.end(station)
+      @journey_log.finish(station)
       deduct(@journey_log.history.last.fare)
     end
     @journey_log.start(station)
@@ -33,7 +33,7 @@ class Oystercard
 
   def touch_out(station)
     @journey_log.start(nil) if @journey_log.current_journey == nil
-    @journey_log.end(station)
+    @journey_log.finish(station)
     deduct(@journey_log.history.last.fare)
   end
 

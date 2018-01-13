@@ -11,15 +11,20 @@ class JourneyLog
   end
 
   def start(station)
-    @current_journey = @journey_class.new
+    create_journey
     @current_journey.set_entry(station)
   end
 
-  def end(station)
+  def finish(station)
     @current_journey.set_exit(station)
     @history << @current_journey
     @current_journey = nil
   end
 
+  private
+
+    def create_journey
+      @current_journey = @journey_class.new
+    end
 
 end
