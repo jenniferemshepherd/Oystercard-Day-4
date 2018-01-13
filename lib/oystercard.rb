@@ -26,7 +26,6 @@ class Oystercard
   end
 
   def touch_out(exit)
-    @journey_log.start(nil) if @journey_log.current_journey == nil
     @journey_log.finish(exit)
     deduct(@journey_log.history.last.fare)
   end
