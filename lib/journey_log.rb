@@ -11,7 +11,7 @@ class JourneyLog
 
   def start(station)
     create_journey(station)
-    @current_journey.set_entry(station)
+    # @current_journey.set_entry(station)
   end
 
   def finish(station)

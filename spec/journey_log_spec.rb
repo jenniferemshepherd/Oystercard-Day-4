@@ -11,11 +11,6 @@ describe JourneyLog do
       log.start(station)
       expect(log.current_journey).not_to be nil
     end
-
-    it 'receives set_entry' do
-      log.start(station)
-      expect(log.current_journey).to respond_to(:set_entry).with(1).argument
-    end
   end
 
   describe 'ends journey' do
