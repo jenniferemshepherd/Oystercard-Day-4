@@ -10,12 +10,12 @@ class JourneyLog
     @current_journey
   end
 
-  def start_journey(station)
+  def start(station)
     @current_journey = @journey_class.new
     @current_journey.set_entry(station)
   end
 
-  def end_journey(station)
+  def end(station)
     @current_journey.set_exit(station)
     @history << @current_journey
     @current_journey = nil

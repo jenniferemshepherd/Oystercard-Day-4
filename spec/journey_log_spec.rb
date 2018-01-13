@@ -8,26 +8,26 @@ describe JourneyLog do
 
   describe 'starts journey' do
     it 'creates a new journey' do
-      log.start_journey(station)
+      log.start(station)
       expect(log.current_journey).not_to be nil
     end
 
     it 'receives set_entry' do
-      log.start_journey(station)
+      log.start(station)
       expect(log.current_journey).to respond_to(:set_entry).with(1).argument
     end
   end
 
   describe 'ends journey' do
     it 'ends the journey' do
-      log.start_journey(station)
-      log.end_journey(station)
+      log.start(station)
+      log.end(station)
       expect(log.current_journey).to be nil
     end
 
     it 'stores journey' do
-      log.start_journey(station)
-      log.end_journey(station)
+      log.start(station)
+      log.end(station)
       expect(log.history).not_to be_empty
     end
 

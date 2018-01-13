@@ -16,11 +16,11 @@ describe Oystercard do
   end
 
   describe '#top_up' do
-    it "tops up the oystercard" do
+    it "tops up oystercard" do
       expect(card.top_up(10)).to eq 10
     end
 
-    it "to raise an error if top up amount is greater than 90" do
+    it "raises error if top up limit exceeded" do
       expect {card.top_up(100)}.to raise_error "There is a limit of #{CARD_LIMIT}"
     end
   end
@@ -41,22 +41,21 @@ describe Oystercard do
     end
 
     context 'insufficient balance' do
-      it 'if balance is below the minimum fare, card wont touch in' do
+      it 'wont touch in if balance < min fare' do
         expect {card.touch_in(entry_station)}.to raise_error "you dont have enough money"
       end
     end
-
   end
 
   describe '#touch_out' do
     context 'sufficient balance' do
-      it 'is expected to deduct fare when touching out' do
+      it 'deducts fare when touching out' do
         card.top_up(30)
         card.touch_in(entry_station)
         expect { card.touch_out(exit_station) }.to change { card.balance }.by (-Oystercard::MINIMUM_FARE)
       end
 
-      it 'alters balance on double touch out' do
+      it 'applies penalty fare on double touch out' do
         card.top_up(30)
         expect { card.touch_out(exit_station) }.to change { card.balance }.by -6
       end
