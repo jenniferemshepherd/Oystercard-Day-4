@@ -17,14 +17,18 @@ class JourneyLog
 
   def finish(station)
     @current_journey.set_exit(station)
-    @history << @current_journey
-    @current_journey = nil
+    log(@current_journey)
   end
 
   private
 
     def create_journey
       @current_journey = @journey_class.new
+    end
+
+    def log(current_journey)
+      @history << current_journey
+      @current_journey = nil
     end
 
 end
