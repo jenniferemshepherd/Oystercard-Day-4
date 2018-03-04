@@ -1,9 +1,23 @@
-# oystercard_challenge
+Oystercard Challenge 
+==================
 
-This is a challenge to create a program that represents an oystercard and it's uses
+Brief Summary of Approach
+-------
+I used diagramming to plan my objects and how they would interact with each other.  I then used the TDD cycle, with frequent diagram revisits to implement the program.  I feel a lot more confident with classes and delegation after this challenge.
+
+Points for development:
+* arrange journey log classes differently so that journeys are done on the card and then are stored on the journey log
+
+Instructions
+-------
+
+* Clone this repository
+* cd oystercard-challenge
+* Run the command 'bundle' in the project directory to ensure you have all the gems
 
 User Stories:
-
+--------
+```
 In order to use public transport
 As a customer
 I want money on my card
@@ -51,3 +65,16 @@ I need a penalty charge deducted if I fail to touch in or out
 In order to be charged the correct amount
 As a customer
 I need to have the correct fare calculated
+```
+
+Functionality in IRB
+--------
+```
+- card.balance (returns balance)
+- card.top_up (add balance)
+
+```
+
+Technologies Used:
+--------
+* RSpec
